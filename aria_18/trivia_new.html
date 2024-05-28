@@ -102,6 +102,7 @@
 <div id="popup">
   <h2 id="popup-message"></h2>
   <button onclick="cerrarPopup()">Cerrar</button>
+  <button onclick="reclamarPremio()">Reclamar Premio</button>
 </div>
 
 <div id="overlay"></div>
@@ -109,6 +110,7 @@
 <script>
   function mostrarRespuestas() {
     var respuestasCorrectas = 0;
+    var respuestasIncorrectas = 0;
 
     // Preguntas y respuestas
     var respuestas = {
@@ -124,15 +126,26 @@
 
       if (respuestaUsuario && respuestaUsuario.toLowerCase() === respuestas[i]) {
         respuestasCorrectas++;
+      } else {
+        respuestasIncorrectas++;
       }
     }
 
-    // Mensaje final en ventana emergente
-    var mensajeFinal = respuestasCorrectas === 5
-      ? "¡Todas las respuestas correctas! Mi corazón es todo tuyo. 💖"
-      : "Gracias por jugar. ¡Sigamos conociéndonos más!";
+    // Mensajes finales según el número de respuestas incorrectas
+    var mensajeFinal;
+    if (respuestasCorrectas === 5) {
+      mensajeFinal = "Perfecto..! Hoy quiero decirte que me encantas y soy todo tuyo.♥️";
+    } else if (respuestasIncorrectas === 1) {
+      mensajeFinal = "Casi perfecto. Mereces 2 besos 😘";
+    } else if (respuestasIncorrectas === 2) {
+      mensajeFinal = "Uf pensé que me conocías mi vida 😔";
+    } else if (respuestasIncorrectas === 3) {
+      mensajeFinal = "Oye, ¿lo hiciste a propósito?";
+    } else {
+      mensajeFinal = "Gracias por jugar. ¡Sigamos conociéndonos más!";
+    }
 
-    // Mostrar la ventana emergente con animación
+    // Mostrar la ventana emergente con el mensaje final
     mostrarPopup(mensajeFinal);
   }
 
@@ -145,6 +158,10 @@
   function cerrarPopup() {
     document.getElementById("popup").style.display = "none";
     document.getElementById("overlay").style.display = "none";
+  }
+
+  function reclamarPremio() {
+    alert("Reclama tu premio al número: +526682253386");
   }
 </script>
 
