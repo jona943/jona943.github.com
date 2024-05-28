@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Trivia Retro sobre Jonathan 🫀🎁</title>
+  <style>
+    body {
+      font-family: 'Courier New', Courier, monospace;
+      text-align: center;
+      background-color: #f8f1e5;
+      margin: 0;
+      padding: 20px;
+    }
+
+    #game-container {
+      background-color: #fef0db;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+      display: inline-block;
+    }
+
+    #result {
+      font-weight: bold;
+      color: #7a5c50;
+      margin-top: 20px;
+    }
+
+    /* Estilos para la ventana emergente y superposición */
+    #popup {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: #f2edd7;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+      z-index: 1000;
+      background-size: cover;
+      color: #7a5c50;
+    }
+
+    #overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      z-index: 900;
+    }
+
+    /* Estilo vintage */
+    h1, p, button {
+      font-family: 'Dancing Script', cursive;
+      color: #7a5c50;
+    }
+
+    button {
+      background-color: #e0c8b6;
+      border: none;
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #d3b0a0;
+    }
+  </style>
+</head>
+<body>
+
+<div id="game-container">
+  <h1>Trivia Retro sobre Jonathan 🫀🎁</h1>
+  <form id="trivia-form">
+    <p>1. ¿En qué mes nací? 👶</p>
+    <input type="text" id="respuesta1"><br><br>
+
+    <p>2. ¿Cuál es mi color favorito? 🎨</p>
+    <input type="text" id="respuesta2"><br><br>
+
+    <p>3. ¿Última comida que hablamos que no me gusta? ❌</p>
+    <input type="text" id="respuesta3"><br><br>
+
+    <p>4. ¿Qué instrumento toco? 🎻</p>
+    <input type="text" id="respuesta4"><br><br>
+
+    <p>5. ¿Cómo se llama mi pasatiempo que tiene que ver con Robots? ⚡️</p>
+    <input type="text" id="respuesta5"><br><br>
+
+    <button type="button" onclick="mostrarRespuestas()">Responder</button>
+  </form>
+</div>
+
+<!-- Ventana emergente y superposición -->
+<div id="popup">
+  <h2 id="popup-message"></h2>
+  <button onclick="cerrarPopup()">Cerrar</button>
+  <button onclick="reclamarPremio()">Reclamar Premio</button>
+</div>
+
+<div id="overlay"></div>
+
+<script>
+  function mostrarRespuestas() {
+    var respuestasCorrectas = 0;
+    var respuestasIncorrectas = 0;
+
+    // Preguntas y respuestas
+    var respuestas = {
+      1: "septiembre",
+      2: "azul",
+      3: "camaron",
+      4: "guitarra",
+      5: "electronica"
+    };
+
+    for (var i = 1; i <= 5; i++) {
+      var respuestaUsuario = document.getElementById("respuesta" + i).value;
+
+      if (respuestaUsuario && respuestaUsuario.toLowerCase() === respuestas[i]) {
+        respuestasCorrectas++;
+      } else {
+        respuestasIncorrectas++;
+      }
+    }
+
+    // Mensajes finales según el número de respuestas incorrectas
+    var mensajeFinal;
+    if (respuestasCorrectas === 5) {
+      mensajeFinal = "Perfecto..! Hoy quiero decirte que me encantas y soy todo tuyo.♥️";
+    } else if (respuestasIncorrectas === 1) {
+      mensajeFinal = "Casi perfecto. Mereces 2 besos 😘";
+    } else if (respuestasIncorrectas === 2) {
+      mensajeFinal = "Uf pensé que me conocías mi vida 😔";
+    } else if (respuestasIncorrectas === 3) {
+      mensajeFinal = "Oye, ¿lo hiciste a propósito?";
+    } else {
+      mensajeFinal = "Gracias por jugar. ¡Sigamos conociéndonos más!";
+    }
+
+    // Mostrar la ventana emergente con el mensaje final
+    mostrarPopup(mensajeFinal);
+  }
+
+  function mostrarPopup(mensaje) {
+    document.getElementById("popup-message").innerHTML = mensaje;
+    document.getElementById("popup").style.display = "block";
+    document.getElementById("overlay").style.display = "block";
+  }
+
+  function cerrarPopup() {
+    document.getElementById("popup").style.display = "none";
+    document.getElementById("overlay").style.display = "none";
+  }
+
+  function reclamarPremio() {
+    alert("Reclama tu premio al número: +526682253386");
+  }
+</script>
+
+</body>
+</html>
