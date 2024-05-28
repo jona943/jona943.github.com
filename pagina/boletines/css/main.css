@@ -1,0 +1,29 @@
+/* Define el estilo para la tabla */
+table {
+    width: 100%;
+    border-collapse: collapse; /* Asegura que los bordes no se dupliquen */
+    border: 1px double #000; /* Borde doble para la tabla */
+}
+
+th, td {
+    border: 2px double #000; /* Borde doble para las celdas */
+    padding: 1px;
+    text-align: left;
+}
+
+
+.red {
+    height: 200px;
+    width: 100px;
+    background-color: red;
+}
+
+#boton-pago {
+    background-color: yellow;
+}
+
+.icono {
+    width: 20px;
+    height: 20px;
+    object-fit: contain;
+}
